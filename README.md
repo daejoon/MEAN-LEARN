@@ -3,7 +3,7 @@ MEAN-LEARN
 
 MEAN(MongoDB, Express, AngularJS, Node.js)을 배우는 프로젝트
 
-## IntelliJ에서 Node 사용시 [ReferenceError: Process is not defined] 발생시 대처방법
+### IntelliJ에서 Node 사용시 [ReferenceError: Process is not defined] 발생시 대처방법
 
 현재 노드 버전은 v0.10.24, Express는 3.4.7 입니다.
 
