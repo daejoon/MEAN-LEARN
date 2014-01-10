@@ -18,5 +18,5 @@ var UglifyJS = vm.createContext({
       MOZ_SourceMap : require("source-map")
 });
 ```
-[링크](https://github.com/Chevex/UglifyJS2/commit/7348facbe994aa1909a276b4be54f13c7f01e079)
+[원본 링크](https://github.com/Chevex/UglifyJS2/commit/7348facbe994aa1909a276b4be54f13c7f01e079)
 
