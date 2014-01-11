@@ -22,7 +22,8 @@ var UglifyJS = vm.createContext({
 
 #### IntelliJ에서 Node http를 Cluster 사용시 연결이 안되는 문제.
 
-Debug로 하면안되고 Run으로 하면됨
+결국 클러스터링을 사용하면은 디버깅이 안된다. Run으로 실행하자.
 
-[원본 링크](http://stackoverflow.com/questions/16840623/how-to-debug-node-js-child-forked-process)
+[원본 링크](https://github.com/node-inspector/node-inspector/issues/130)
+[StackOverflow](http://stackoverflow.com/questions/16840623/how-to-debug-node-js-child-forked-process)
 
