@@ -20,3 +20,9 @@ var UglifyJS = vm.createContext({
 ```
 [원본 링크](https://github.com/Chevex/UglifyJS2/commit/7348facbe994aa1909a276b4be54f13c7f01e079)
 
+#### IntelliJ에서 Node http를 Cluster 사용시 연결이 안되는 문제.
+
+Debug로 하면안되고 Run으로 하면됨
+
+[원본 링크](http://stackoverflow.com/questions/16840623/how-to-debug-node-js-child-forked-process)
+
