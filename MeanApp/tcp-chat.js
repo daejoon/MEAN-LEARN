@@ -21,7 +21,6 @@ var server = net.createServer(function(sock) {
         sockets.splice(i, 1);
         console.log('[' + i + ']' + '님이 종료되었습니다.');
     });
-
 })
 
 server.listen(3000, function() {
