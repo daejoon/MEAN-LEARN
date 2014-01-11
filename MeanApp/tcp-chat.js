@@ -3,7 +3,7 @@ var sockets = [];
 
 
 
-net.createServer(function(sock) {
+var server = net.createServer(function(sock) {
     sockets.push(sock);
 
     sock.on('data', function(data) {
@@ -21,7 +21,9 @@ net.createServer(function(sock) {
         console.log(sock.remoteAddress + '님이 종료되었습니다.');
     });
 
-}).listen(3000, function() {
-        console.log("Tcp 채팅 서버가 시작되었습니다.");
+})
+
+server.listen(3000, function() {
+    console.log("Tcp 채팅 서버가 시작되었습니다.");
 });
 
