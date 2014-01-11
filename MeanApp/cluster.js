@@ -1,3 +1,6 @@
+//
+// 클러스터는 Debug로 실행하면은 안된다. 현재는 Release로 실행하자
+//
 var express = require('express');
 var routes  = require('./routes');
 var user    = require('./routes/user');
