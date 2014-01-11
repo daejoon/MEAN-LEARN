@@ -7,18 +7,19 @@ var server = net.createServer(function(sock) {
     sockets.push(sock);
 
     sock.on('data', function(data) {
-       for (var idx = 0; idx < sockets.length; idx++) {
+        var i = sockets.indexOf(sock);
+        console.log(sock.remoteAddress + '[' + i + ']' + '님의 말:' + data);
+        for (var idx = 0; idx < sockets.length; idx++) {
            if ( sockets[idx] !== sock ) {
-               console.log(sock.remoteAddress + '님의 말:' + data);
-               sockets[idx].write(sock.remoteAddress + '님의 말:' + data);
+               sockets[idx].write(sock.remoteAddress + '[' + i + ']' + '님의 말:' + data);
            }
-       }
+        }
     });
 
     sock.on('end', function() {
         var i = sockets.indexOf(sock);
         sockets.splice(i, 1);
-        console.log(sock.remoteAddress + '님이 종료되었습니다.');
+        console.log('[' + i + ']' + '님이 종료되었습니다.');
     });
 
 })
