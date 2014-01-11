@@ -25,7 +25,7 @@ var UglifyJS = vm.createContext({
 
 #### IntelliJ에서 Node http를 Cluster 사용시 연결이 안되는 문제.
 
-결국 클러스터링을 사용하면은 디버깅이 안된다. Run으로 실행 한다.
+결국 클러스터링을 사용하면은 디버깅이 안된다. Run(Release)으로 실행 한다.
 
 [원본 링크](https://github.com/joyent/node/issues/5318)
 
