@@ -25,5 +25,6 @@ var UglifyJS = vm.createContext({
 결국 클러스터링을 사용하면은 디버깅이 안된다. Run으로 실행하자.
 
 [원본 링크](https://github.com/node-inspector/node-inspector/issues/130)
+
 [StackOverflow](http://stackoverflow.com/questions/16840623/how-to-debug-node-js-child-forked-process)
 
