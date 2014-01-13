@@ -1,47 +1,38 @@
+/**
+ * Module dependencies.
+ */
+
 var express = require('express');
+var routes  = require('./routes');
+var user    = require('./routes/user');
+var dispatcher = require('./routes/dispatcher');
+var http    = require('http');
+var path    = require('path');
+var util    = require('util');
 
 var app = express();
 
-
-// Register ejs as .html. If we did
-// not call this, we would need to
-// name our views foo.ejs instead
-// of foo.html. The __express method
-// is simply a function that engines
-// use to hook into the Express view
-// system by default, so if we want
-// to change "foo.ejs" to "foo.html"
-// we simply pass _any_ function, in this
-// case `ejs.__express`.
-
+// all environments
 app.engine('.html', require('ejs').__express);
-
-// Optional since express defaults to CWD/views
-
-app.set('views', __dirname + '/views');
-
-// Without this you would need to
-// supply the extension to res.render()
-// ex: res.render('users.html').
-app.set('view engine', 'html');
 app.set('port', process.env.PORT || 3000);
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'html');
+app.use(express.favicon());
+app.use(express.logger('dev'));
+app.use(express.json());
+app.use(express.urlencoded());
+app.use(express.methodOverride());
+app.use(app.router);
+app.use(express.static(path.join(__dirname, 'public')));
 
-// Dummy users
-var users = [
-    { name: 'tobi', email: 'tobi@learnboost.com' },
-    { name: 'loki', email: 'loki@learnboost.com' },
-    { name: 'jane', email: 'jane@learnboost.com' }
-];
+// development only
+if ('development' == app.get('env')) {
+    app.use(express.errorHandler());
+}
 
-app.get('/', function(req, res){
-    res.render('ejs/users', {
-        users: users,
-        title: "EJS example",
-        header: "Some users"
-    });
+app.all('/*', dispatcher.dispatcher);
+
+http.createServer(app).listen(app.get('port'), function(){
+    console.log('Express server listening on port ' + app.get('port'));
 });
 
-
-app.listen(app.get('port'), function() {
-    console.log('Express app started on port %d', app.get('port'));
-});
