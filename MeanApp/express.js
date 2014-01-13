@@ -24,6 +24,7 @@ app.set('views', __dirname + '/views');
 // supply the extension to res.render()
 // ex: res.render('users.html').
 app.set('view engine', 'html');
+app.set('port', process.env.PORT || 3000);
 
 // Dummy users
 var users = [
@@ -33,7 +34,7 @@ var users = [
 ];
 
 app.get('/', function(req, res){
-    res.render('users', {
+    res.render('ejs/users', {
         users: users,
         title: "EJS example",
         header: "Some users"
@@ -41,5 +42,6 @@ app.get('/', function(req, res){
 });
 
 
-app.listen(3000);
-console.log('Express app started on port %d', 3000);
+app.listen(app.get('port'), function() {
+    console.log('Express app started on port %d', app.get('port'));
+});
