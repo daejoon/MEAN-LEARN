@@ -1,3 +1,4 @@
+var repo = require('../lib/db/dao/repository');
 
 /*
  * GET home page.
@@ -16,9 +17,12 @@ exports.form = function(req, res) {
 };
 
 exports.join = function (req, res) {
-    res.render('join-result', {
-        username: req.body.name
-        , useremail: req.body.email
-        , title: 'Express'
-    })
+//    res.render('join-result', {
+//        username: req.body.name
+//        , useremail: req.body.email
+//        , title: 'Express'
+//    })
+
+//    repo.insertUser(req.body, res);
+    repo.hasNameAndEmail(req.body, res);
 };

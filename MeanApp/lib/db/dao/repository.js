@@ -1,4 +1,4 @@
-var mysqlConfig = require('../lib/db/mysqlConfig');
+var mysqlConfig = require('../com/mysqlConfig');
 var mysql = require('mysql')
     , TABLE = 'members'
     , client = mysql.createConnection(mysqlConfig);
@@ -26,6 +26,24 @@ var mysqlUtil = module.exports = {
                         })
                     }
                 );
+            }
+        );
+    }
+    , hasNameAndEmail: function(user, res) {
+        client.query(
+            'SELECT * FROM ' + TABLE + ' WHERE name = ? OR email = ? '
+            , [user.name, user.email]
+            , function(err, results, fields) {
+                if ( err ) {
+                    throw err;
+                }
+                if ( results.length > 0 ) {
+                    res.render('join-fail', {
+                        title: 'Express'
+                    });
+                } else {
+                    mysqlUtil.insertUser(user, res);
+                }
             }
         );
     }
