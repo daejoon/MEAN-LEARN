@@ -86,6 +86,8 @@ console.log('Express app started on port %d', 80);
 
 [Node.js 프로그래밍](http://www.yes24.com/24/goods/6271069?scode=029) 책보고 공부하는데 오류 발생
 
+jade 버전이 올라가면서 문법이 변경됐다.
+
 `script(type='text/javascript')` => `script(type='text/javascript').` 스크립트 끝 ')'을 ').'으로 점을 찍어야 함
 
 [원본 링크](http://jade-lang.com/)

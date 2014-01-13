@@ -14,3 +14,11 @@ exports.user = function(req, res){
 exports.form = function(req, res) {
     res.render('join-form', {title: 'Express'});
 };
+
+exports.join = function (req, res) {
+    res.render('join-result', {
+        username: req.body.name
+        , useremail: req.body.email
+        , title: 'Express'
+    })
+};
