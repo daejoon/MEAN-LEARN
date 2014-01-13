@@ -9,7 +9,7 @@ var http    = require('http');
 var path    = require('path');
 var util    = require('util');
 
-var app = express();
+var app = module.exports = express();
 
 // all environments
 app.engine('.html', require('ejs').__express);
@@ -33,15 +33,10 @@ if ('development' == app.get('env')) {
 
 app.get('/', routes.index);
 app.get('/users', user.list);
-var user = {};
+app.get('/user/:id', function(req, res) {
 
-app.get('/user/:id', function(req, res){
-    var id = req.params.id;
 });
 
 http.createServer(app).listen(app.get('port'), function(){
-    console.log('Express server listening on port ' + app.get('port'));
+    console.log('Express server listening on port %d in %s mode', app.get('port'), app.settings.env);
 });
-
-console.log(app.routes);
-
