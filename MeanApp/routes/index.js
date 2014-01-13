@@ -5,7 +5,7 @@ var repo = require('../lib/db/dao/repository');
  */
 
 exports.index = function(req, res){
-  res.render('index', { title: 'Express' });
+    res.render('index', { title: 'Express' });
 };
 
 exports.user = function(req, res){
@@ -17,12 +17,22 @@ exports.form = function(req, res) {
 };
 
 exports.join = function (req, res) {
-//    res.render('join-result', {
-//        username: req.body.name
-//        , useremail: req.body.email
-//        , title: 'Express'
-//    })
+    var user = req.body;
 
-//    repo.insertUser(req.body, res);
-    repo.hasNameAndEmail(req.body, res);
+    repo.hasNameAndEmail(user, function(err, results, fields) {
+        if ( results.length > 0 ) {
+            res.render('join-fail', {
+                title: 'Express'
+            });
+        } else {
+            repo.insertUser(user, function(err, results, fields) {
+                res.render('join-result', {
+                    username: results[0].name
+                    , useremail: results[0].email
+                    , title: 'Express'
+                    , joinSuccess: true
+                })
+            });
+        }
+    });
 };

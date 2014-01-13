@@ -1,4 +1,5 @@
 var mysqlConfig = require('../com/mysqlConfig');
+var util = require('util');
 var mysql = require('mysql')
     , TABLE = 'members'
     , client = mysql.createConnection(mysqlConfig);
@@ -6,11 +7,14 @@ var mysql = require('mysql')
 client.query('USE ' + mysqlConfig.database);
 
 var mysqlUtil = module.exports = {
-    insertUser: function(user, res) {
+    insertUser: function(user, callback) {
         client.query(
             'INSERT INTO ' + TABLE + ' SET name = ?, email = ?'
             , [user.name, user.email]
             , function(err) {
+                if ( err ) {
+                    throw err;
+                }
                 client.query(
                     'SELECT * FROM ' + TABLE + ' WHERE name = ?'
                     , [user.name]
@@ -18,18 +22,13 @@ var mysqlUtil = module.exports = {
                         if ( err ) {
                             throw err;
                         }
-                        res.render('join-result', {
-                            username: results[0].name
-                            , useremail: results[0].email
-                            , title: 'Express'
-                            , joinSuccess: true
-                        })
+                        callback(err, results, fields);
                     }
                 );
             }
         );
     }
-    , hasNameAndEmail: function(user, res) {
+    , hasNameAndEmail: function(user, callback) {
         client.query(
             'SELECT * FROM ' + TABLE + ' WHERE name = ? OR email = ? '
             , [user.name, user.email]
@@ -37,13 +36,7 @@ var mysqlUtil = module.exports = {
                 if ( err ) {
                     throw err;
                 }
-                if ( results.length > 0 ) {
-                    res.render('join-fail', {
-                        title: 'Express'
-                    });
-                } else {
-                    mysqlUtil.insertUser(user, res);
-                }
+                callback(err, results, fields);
             }
         );
     }
