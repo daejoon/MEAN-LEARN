@@ -88,6 +88,6 @@ console.log('Express app started on port %d', 80);
 
 jade 버전이 올라가면서 문법이 변경됐다.
 
-`script(type='text/javascript')` => `script(type='text/javascript').` 스크립트 끝 ')'을 ').'으로 점을 찍어야 함
+`script(type='text/javascript')` => `script(type='text/javascript').` 스크립트 끝에 '.'을 추가해야 한다.
 
 [원본 링크](http://jade-lang.com/)
