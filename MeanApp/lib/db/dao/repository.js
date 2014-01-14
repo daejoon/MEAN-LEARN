@@ -1,4 +1,5 @@
 var mysqlConfig = require('../com/mysqlConfig');
+var _ = require('underscore');
 var util = require('util');
 var mysql = require('mysql')
     , TABLE = 'members'
@@ -22,7 +23,9 @@ var mysqlUtil = module.exports = {
                         if ( err ) {
                             throw err;
                         }
-                        callback(err, results, fields);
+                        if (_.isFunction(callback)) {
+                            callback(err, results, fields);
+                        }
                     }
                 );
             }
@@ -36,7 +39,10 @@ var mysqlUtil = module.exports = {
                 if ( err ) {
                     throw err;
                 }
-                callback(err, results, fields);
+
+                if (_.isFunction(callback)) {
+                    callback(err, results, fields);
+                }
             }
         );
     }
