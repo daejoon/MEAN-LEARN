@@ -38,7 +38,7 @@ var express = require('express');
 var app = express();
 
 
-// Register ejs as .html. If we did
+// Register ejs as .html. If we `did
 // not call this, we would need to
 // name our views foo.ejs instead
 // of foo.html. The __express method
